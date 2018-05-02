@@ -1,0 +1,12 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+/*@import "css/normilize.css";*/
+/*@import "~font-awesome/css/font-awesome.css";*/
+/*@import "css/hint.min.css";*/
+@import "./css/roboto.css";
+@import "./css/material-icons.css";
+@import '~rc-calendar/assets/index.css';
+@import "css/app.css";
+

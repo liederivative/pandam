@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="modal://modal.css" media="screen" type="text/css">
+	<style type="text/css" media="all">
+		html {border-radius:30px;}
+	</style>
+	<title>Error</title>
+</head>
+<body>
+
+	<div style="-webkit-app-region: drag">
+		<div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="title"></h4>
+					</div>
+		
+					<div class="modal-body">
+						<p id="msg"></p>
+						<!-- <div class="group">
+							<input type="text" required="required"/>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+						      <label>Name</label>
+						</div>
+		 -->
+					<div class="modal-footer" style="-webkit-app-region: no-drag">
+						<button type="button" class="btn btn-dialog" id="cancel" ></button>
+						<button type="button" class="btn btn-dialog" id="ok" ></button>
+					</div>
+				</div><!-- modal-content -->
+			</div><!-- modal-dialog -->
+		</div>
+	</div><!-- modal -->
+
+</body>
+<script src="modal://modal.js"></script>
+
+<script>
+
+	const path = require('path'); 
+	const {remote} = require('electron');
+	const store = remote.getGlobal('reduxStore');
+	// const {closeWindow} = require('./modal');
+	const {closeWindow} = module.exports;
+
+	let info = store.getState().modal;
+	let cancelBtn = document.getElementById('cancel');
+	document.getElementById('msg').innerHTML = info.msg;
+	document.getElementById('title').innerHTML = info.title;
+	cancelBtn.innerHTML =  info.textNo;
+	if(info.type !== 'YesOrNo') cancelBtn.style.display = 'none';
+	document.getElementById('ok').innerHTML = info.textYes;
+
+
+	
+	console.log(store);
+	document.getElementById('cancel').addEventListener('click',(event)=>{
+		
+		
+		closeWindow( store.dispatch({type:'MODAL_ANSWERED_NO'}), remote );
+		
+	})
+	document.getElementById('ok').addEventListener('click',(event)=>{
+		
+		closeWindow( store.dispatch({type:'MODAL_ANSWERED_YES'}), remote );
+		
+	})
+</script>
+</html>

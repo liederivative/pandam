@@ -1,0 +1,18 @@
+{
+  "name": "pandam-syminv",
+  "productName": "pandam",
+  "version": "0.0.1",
+  "description": "Aplicacion para manejo de prestamos personales",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "GEZETA",
+    "email": "jimenez.serrata@gmail.com",
+    "url": "https://github.com/derivative"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
+    "postinstall": "npm run electron-rebuild"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
